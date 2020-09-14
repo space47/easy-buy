@@ -4,6 +4,7 @@ const stripe = require("stripe")(
 );
 
 const app = express();
+const port = process.env.PORT || 9000;
 
 // middlewares
 app.use(express.json());
@@ -33,4 +34,6 @@ app.post("/payments/create", async (request, response) => {
   });
 });
 
-app.listen(9000, () => console.log(`Node server listening on port ${9000}!`));
+//listen
+//below line listen in the given post
+app.listen(port, () => console.log(`listening on localhost: ${port}`));

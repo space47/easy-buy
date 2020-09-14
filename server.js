@@ -1,6 +1,4 @@
 const express = require("express");
-
-const cors = require("cors");
 const stripe = require("stripe")(
   "sk_test_51HQp74IGW7F8CVWPZljRPA8O23U3cYHs90q9rRpPCVPvi0y3rBDVGxViNelm8zLXHVjdUE1Ye3hKIysebFBIFVEQ00m1HNEutO"
 );
@@ -9,7 +7,11 @@ const app = express();
 
 // middlewares
 app.use(express.json());
-app.use(cors({ origin: true }));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*"),
+    res.setHeader("Access-Control-Allow-Headers", "*"),
+    next();
+});
 
 // API router
 app.get("/", (request, response) => response.status(200).send("hello world"));
